@@ -1,10 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
-
-const App = () => {
-  const expenses = [
+ const TEST_EXPENSES = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -26,9 +24,13 @@ const App = () => {
     },
   ];
 
+const App = () => {
+  const [expenses, setExpenses] = useState(TEST_EXPENSES);
+ 
   const addExpenseHandler = expense => {
-    console.log('In App.js');
-    console.log(expenses);
+    setExpenses(prevExpenses => {
+      return [expense, ...prevExpenses];
+    });
   };
 
   // return React.createElement(
